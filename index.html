@@ -192,15 +192,26 @@ html, body {
 <style>
 
 body {
-
     box-sizing:border-box;
+    background-color:#08080b;
+}
 
+html {
+    background-color:#08080b;
 }
 
 body.adult-mode {
     background:radial-gradient(circle at top, #1b1b22 0%, #0e0e12 45%, #08080b 100%) !important;
     color:#f3e9ee !important;
     transition:background-color 1.1s ease, color 1.1s ease;
+    min-height:100%;
+    padding-top:env(safe-area-inset-top);
+    padding-bottom:env(safe-area-inset-bottom);
+}
+
+html.adult-mode,
+body.adult-mode {
+    background-color:#08080b !important;
 }
 
 body.adult-mode #header {
