@@ -205,13 +205,25 @@ body.adult-mode {
     color:#f3e9ee !important;
     transition:background-color 1.1s ease, color 1.1s ease;
     min-height:100%;
-    padding-top:env(safe-area-inset-top);
-    padding-bottom:env(safe-area-inset-bottom);
+    padding-top:max(env(safe-area-inset-top), 0px);
+    padding-bottom:max(env(safe-area-inset-bottom), 0px);
 }
 
 html.adult-mode,
 body.adult-mode {
     background-color:#08080b !important;
+}
+
+body.adult-mode::before {
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:calc(env(safe-area-inset-top) + 1px);
+    background:#08080b;
+    z-index:1000;
+    pointer-events:none;
 }
 
 body.adult-mode #header {
