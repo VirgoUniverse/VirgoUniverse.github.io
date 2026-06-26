@@ -6,7 +6,8 @@
 <script src="/_sdk/telemetry_sdk.js"></script>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#E9D5FF">
 
 <title>Virgo Universe</title>
 
@@ -212,18 +213,6 @@ body.adult-mode {
 html.adult-mode,
 body.adult-mode {
     background-color:#08080b !important;
-}
-
-body.adult-mode::before {
-    content:"";
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    height:calc(env(safe-area-inset-top) + 1px);
-    background:#08080b;
-    z-index:1000;
-    pointer-events:none;
 }
 
 body.adult-mode #header {
@@ -1155,6 +1144,13 @@ lucide.createIcons();
 function setAdultTheme(active){
 
 document.body.classList.toggle("adult-mode", active);
+
+document.documentElement.classList.toggle("adult-mode", active);
+
+const themeMeta=document.querySelector('meta[name="theme-color"]');
+if(themeMeta){
+    themeMeta.setAttribute("content", active ? "#08080b" : "#E9D5FF");
+}
 
 if(active){
     document.body.style.transition = "background-color 0.9s ease, color 0.9s ease";
