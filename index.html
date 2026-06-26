@@ -1151,10 +1151,10 @@ document.documentElement.classList.toggle("adult-mode", active);
 const themeMeta=document.querySelector('meta[name="theme-color"]');
 const appleStatusMeta=document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
 if(themeMeta){
-    themeMeta.setAttribute("content", active ? "#2A2A31" : "#C084FC");
+    themeMeta.setAttribute("content", active ? "#08080b" : "#C084FC");
 }
 if(appleStatusMeta){
-    appleStatusMeta.setAttribute("content", active ? "default" : "black-translucent");
+    appleStatusMeta.setAttribute("content", "black-translucent");
 }
 
 if(active){
