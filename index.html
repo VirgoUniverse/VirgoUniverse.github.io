@@ -215,6 +215,18 @@ body.adult-mode {
     background-color:#08080b !important;
 }
 
+body.adult-mode::before {
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:calc(env(safe-area-inset-top) + 20px);
+    background:#08080b;
+    z-index:2147483647;
+    pointer-events:none;
+}
+
 body.adult-mode #header {
     background:linear-gradient(135deg,#1f1f26,#121218 55%,#0d0d13);
     color:#f3e9ee;
