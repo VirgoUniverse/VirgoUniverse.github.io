@@ -216,6 +216,20 @@ body.adult-mode #help-modal .bg-slate-50 {
     color: #f3e9ee !important;             /* Testo chiaro per massima leggibilità */
 
 
+
+#help-fab{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    z-index:70;
+}
+body.adult-mode #help-fab{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    z-index:70;
+}
+
 </style>
 
 
@@ -249,11 +263,9 @@ body.adult-mode {
 @keyframes adultModeEntry {
     0% {
         opacity:0.96;
-        filter:saturate(0.95);
     }
     100% {
         opacity:1;
-        filter:saturate(1);
     }
 }
 
@@ -972,10 +984,9 @@ Ordina su WhatsApp
         </div>
     </div>
 </div>
-
 <!-- Bottone di aiuto fluttuante -->
 <button onclick="showHelpModal()" 
-    class="fixed bottom-6 right-6 z-40 bg-[#C084FC] text-white p-3.5 rounded-full shadow-lg hover:-translate-y-1 hover:shadow-2xl hover:bg-[#A855F7] transition-all duration-300 flex items-center justify-center group" 
+    id="help-fab" class="fixed bottom-6 right-6 z-[70] bg-[#C084FC] text-white p-3.5 rounded-full shadow-lg hover:-translate-y-1 hover:shadow-2xl hover:bg-[#A855F7] transition-all duration-300 flex items-center justify-center group" 
     aria-label="Aiuto">
     <i data-lucide="help-circle" style="width:24px;height:24px" class="group-hover:scale-110 transition-transform"></i>
 </button>
@@ -2246,6 +2257,7 @@ La comunicazione avviene tramite WhatsApp per la sola finalità di gestione degl
 
 
 </footer>
+
 
 
 
