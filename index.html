@@ -2314,8 +2314,10 @@ message +=
 message +=
 `  Quantità: ${i.qty} × €${i.price.toFixed(2)} = €${(i.price*i.qty).toFixed(2)}\n`;
 
-const selectedColorName = (i.colorOptions || []).find((c) => c.value === (i.selectedColor || i.color))?.name || "Base";
-message += `  Colore: ${selectedColorName}\n`;
+if(i.multicolors === "yes") {
+    const selectedColorName = (i.colorOptions || []).find((c) => c.value === (i.selectedColor || i.color))?.name || "Base";
+    message += `  Colore: ${selectedColorName}\n`;
+}
 
 if(i.details){
     message += `  Dettagli: ${i.details}\n`;
