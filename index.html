@@ -1548,10 +1548,13 @@ products.forEach((product) => {
   const baseColors = normalizeColorOptions(product);
 
   product.colorOptions = baseColors;
-    product.selectedColor = product.selectedColor || product.color || baseColors[0]?.value || "bg-blue-100";
-    if (typeof product.multicolors === 'undefined') {
-        product.multicolors = (Array.isArray(baseColors) && baseColors.length > 0) ? "yes" : "no";
-    }
+  product.selectedColor = product.selectedColor || product.color || baseColors[0]?.value || "bg-blue-100";
+
+  if (typeof product.multicolors === 'undefined') {
+    product.multicolors = "no";
+  } else {
+    product.multicolors = String(product.multicolors).toLowerCase() === "yes" ? "yes" : "no";
+  }
 });
 
 let cart = [];
