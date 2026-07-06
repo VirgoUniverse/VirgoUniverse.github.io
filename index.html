@@ -736,7 +736,7 @@ style="width:18px;height:18px">
 
 
 
-<div class="category-bar bg-[#FAF5FF] border-b border-purple-100 overflow-x-auto overflow-y-hidden no-scrollbar shadow-sm sticky top-[3.8rem] z-[55]" style="touch-action:pan-x;">
+<div class="category-bar bg-[#FAF5FF] border-b border-purple-100 overflow-x-auto overflow-y-hidden no-scrollbar shadow-sm sticky z-[55]" style="top: var(--header-height, 3.8rem); touch-action:pan-x;">
 
 
 
@@ -2240,6 +2240,15 @@ overlay.classList.toggle(
 
 
 }
+
+function updateHeaderHeight(){
+  const header = document.getElementById("header");
+  if (!header) return;
+  document.documentElement.style.setProperty("--header-height", `${header.offsetHeight}px`);
+}
+
+window.addEventListener("load", updateHeaderHeight);
+window.addEventListener("resize", updateHeaderHeight);
 
 
 
