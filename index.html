@@ -759,12 +759,8 @@ class="absolute -top-1 -right-1 bg-[#C084FC] text-white text-xs w-5 h-5 rounded-
 
 </div>
 
-<!-- Bottone Carica STL -->
-<div class="flex items-center gap-2 ml-3 order-2 sm:order-3">
-    <button onclick="openStlModal()" class="cat-btn whitespace-nowrap rounded-full border px-3 py-1.5 font-medium text-purple-600 transition hover:-translate-y-0.5 hover:bg-white hover:text-purple-900">
-        Carica STL
-    </button>
-</div>
+
+
 
 
 
@@ -1176,37 +1172,7 @@ Ordina su WhatsApp
 </div>
 
 
-    <!-- Modale Upload STL -->
-    <div id="stl-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/50 px-4">
-        <div class="w-full max-w-lg rounded-3xl border border-purple-200 bg-[#FAF5FF] p-6 shadow-2xl">
-            <div class="flex items-start justify-between">
-                <div>
-                    <h3 class="text-xl font-bold text-purple-950">Carica il tuo file STL</h3>
-                    <p class="text-sm text-purple-800 mt-1">Seleziona un file .stl (max 50 MB). Non è richiesto pagamento; l'ordine verrà inviato via WhatsApp.</p>
-                </div>
-                <button onclick="closeStlModal()" class="rounded-full p-2 text-purple-500 transition hover:bg-purple-100 hover:text-purple-700">
-                    <i data-lucide="x" style="width:18px;height:18px"></i>
-                </button>
-            </div>
-
-            <div class="mt-4">
-                <input id="stl-file-input" type="file" accept=".stl" class="w-full" />
-            </div>
-
-            <div class="mt-4">
-                <label class="text-sm text-purple-500">Note per la stampa</label>
-                <textarea id="stl-notes" class="w-full mt-1 rounded-lg border border-purple-200 bg-white px-3 py-2 text-sm text-purple-900" rows="3" placeholder="Dimensioni, finiture, istruzioni..."></textarea>
-            </div>
-
-            <div class="mt-4 flex gap-2 justify-end">
-                <button onclick="closeStlModal()" class="rounded-xl border border-purple-200 bg-white px-4 py-2 text-sm font-semibold text-purple-700 transition hover:bg-purple-50">Annulla</button>
-                <button id="stl-submit-btn" onclick="uploadStlAndOrder()" class="rounded-xl bg-[#C084FC] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#A855F7]">Invia ordine</button>
-            </div>
-        </div>
-    </div>
-
-
-    <script>
+<script>
 
 
 const products = [
@@ -2991,79 +2957,6 @@ window.open(url,"_blank");
 
 
 // AVVIO
-
-// --- Funzionalità Upload STL ---
-function openStlModal(){
-    const m = document.getElementById('stl-modal');
-    if(!m) return;
-    m.classList.remove('hidden');
-    m.classList.add('flex');
-    m.classList.add('modal-open');
-}
-
-function closeStlModal(){
-    const m = document.getElementById('stl-modal');
-    if(!m) return;
-    m.classList.add('hidden');
-    m.classList.remove('flex');
-    m.classList.remove('modal-open');
-}
-
-async function uploadStlAndOrder(){
-    const input = document.getElementById('stl-file-input');
-    const notes = (document.getElementById('stl-notes')||{}).value||'';
-    const btn = document.getElementById('stl-submit-btn');
-
-    if(!input || !input.files || !input.files[0]){
-        alert('Seleziona un file .stl da caricare.');
-        return;
-    }
-
-    const file = input.files[0];
-    const maxSize = 50 * 1024 * 1024; // 50 MB
-    if(!file.name.toLowerCase().endsWith('.stl')){
-        alert('Il file deve avere estensione .stl');
-        return;
-    }
-    if(file.size > maxSize){
-        alert('File troppo grande. Limite 50 MB.');
-        return;
-    }
-
-    if(btn){ btn.disabled = true; btn.textContent = 'Caricamento...'; }
-
-    let fileUrl = null;
-
-    try{
-        const resp = await fetch('https://transfer.sh/' + encodeURIComponent(file.name), { method: 'PUT', body: file });
-        if(resp.ok){
-            fileUrl = (await resp.text()).trim();
-        } else {
-            throw new Error('upload failed');
-        }
-    }catch(e){
-        console.warn('Upload fallito:', e);
-        const keep = confirm('Upload automatico fallito. Vuoi comunque inviare l\'ordine senza link del file?');
-        if(!keep){ if(btn){ btn.disabled=false; btn.textContent='Invia ordine'; } return; }
-    }
-
-    const orderId = 'V-' + Math.random().toString(36).substr(2,5).toUpperCase();
-
-    let message = '✦  *VIRGO UNIVERSE* ✦\n';
-    message += `｜ *Ordine STL:* #${orderId}｜\n\n`;
-    message += '*Dettagli per la stampa:*\n';
-    if(notes) message += `${notes}\n\n`;
-    if(fileUrl) message += `Link file: ${fileUrl}\n\n`;
-    message += 'Invio file STL per produzione. Contattami per conferme.';
-
-    const whatsappNumber = '393809030742';
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-
-    window.open(url, '_blank');
-
-    if(btn){ btn.disabled=false; btn.textContent='Invia ordine'; }
-    closeStlModal();
-}
 
 
 loadState();
