@@ -320,6 +320,7 @@ body.adult-mode #help-fab{
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     pointer-events: auto;
+    animation: promoToastIn 0.35s ease-out both;
 }
 
 #promo-modal {
@@ -330,6 +331,7 @@ body.adult-mode #help-fab{
     width: min(340px, calc(100vw - 32px));
     z-index: 70;
     pointer-events: auto;
+    animation: promoToastIn 0.35s ease-out both;
 }
 
 #promo-modal > div {
@@ -337,6 +339,40 @@ body.adult-mode #help-fab{
     border: 1px solid rgba(216, 180, 254, 0.55);
     border-radius: 14px;
     box-shadow: 0 14px 30px rgba(88, 28, 135, 0.14);
+}
+
+body.adult-mode #promo-banner,
+body.adult-mode #promo-modal > div {
+    background: rgba(18, 18, 25, 0.82);
+    border: 1px solid rgba(244, 114, 182, 0.38);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.44), 0 0 18px rgba(236, 72, 153, 0.18);
+    color: #f3e9ee;
+}
+
+body.adult-mode #promo-banner .text-purple-500,
+body.adult-mode #promo-banner .text-purple-700,
+body.adult-mode #promo-banner .text-purple-900,
+body.adult-mode #promo-modal .text-purple-500,
+body.adult-mode #promo-modal .text-purple-700,
+body.adult-mode #promo-modal .text-purple-950 {
+    color: #f3e9ee !important;
+}
+
+body.adult-mode #promo-banner .bg-purple-100,
+body.adult-mode #promo-modal .bg-white {
+    background: rgba(244, 114, 182, 0.12) !important;
+    border-color: rgba(244, 114, 182, 0.28) !important;
+}
+
+@keyframes promoToastIn {
+    0% {
+        opacity: 0;
+        transform: translate3d(-14px, -8px, 0) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
 }
 
 @media (min-width: 640px) {
