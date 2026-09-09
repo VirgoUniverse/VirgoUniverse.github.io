@@ -308,9 +308,9 @@ body.adult-mode #help-fab{
 
 #promo-banner {
     position: fixed;
-    right: 16px;
-    bottom: 20px;
-    left: auto;
+    top: 96px;
+    left: 16px;
+    right: auto;
     width: min(340px, calc(100vw - 32px));
     z-index: 70;
     background: rgba(255, 255, 255, 0.96);
@@ -324,8 +324,9 @@ body.adult-mode #help-fab{
 
 #promo-modal {
     position: fixed;
-    right: 16px;
-    bottom: 20px;
+    top: 96px;
+    left: 16px;
+    right: auto;
     width: min(340px, calc(100vw - 32px));
     z-index: 70;
     pointer-events: auto;
@@ -341,7 +342,7 @@ body.adult-mode #help-fab{
 @media (min-width: 640px) {
     #promo-banner,
     #promo-modal {
-        right: 24px;
+        left: 24px;
         width: 340px;
     }
 }
